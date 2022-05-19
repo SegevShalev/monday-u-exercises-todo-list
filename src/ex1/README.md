@@ -19,19 +19,23 @@ The requirements:
 - [x] Add a textbox to be used for adding tasks
 - [x] Add a button ("Add task")
 - [x] When "Add task" button is clicked, add a task to the task list
-- [ ] Change the background and cursor type of an item when hovered on
-- [ ] When a list item is clicked, show 'alert' (**Hint**: check the [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) method) with the item name
-- [ ] Delete an item when "Delete" button is clicked
+- [x] Change the background and cursor type of an item when hovered on
+- [x] When a list item is clicked, show 'alert' (**Hint**: check the [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) method) with the item name
+- [x] Delete an item when "Delete" button is clicked
 
 
 Bonus
-- [ ] Clear the input when a new item is added
-- [ ] Add input validation. e.g when the text input is empty, show a message with an error
+- [x] Clear the input when a new item is added
+- [x] Add input validation. e.g when the text input is empty, show a message with an error
 - [ ] Add "empty state" - when there are no items on the list, show some nice and inviting UI to encourage the user to add items
 - [ ] Add ability to sort the list by name
-- [ ] Add task when enter key is pressed
+- [x] Add task when enter key is pressed
 - [ ] Add animation when a new item is added
-- [ ] have another cool idea? Go wild! 
+-  have another cool idea? Go wild! :
+    - [x] when input length is too big it will cut it and hint to user the text is longer
+    - [x] when input length is too ,the rest of the message will be displayed in the alert.
+
+
 
 When you finish, it should look like this:
 

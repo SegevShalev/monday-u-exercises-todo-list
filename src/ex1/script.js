@@ -5,7 +5,7 @@ const todoList = document.querySelector(".todo-list");
 addButton.addEventListener("click", () => addTodo(input));
 input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    addTodo(input.value);
+    addTodo(input);
   }
 });
 
@@ -17,10 +17,31 @@ function addTodo(input) {
   changeInputPlaceholder(true);
   const todoItem = document.createElement("div");
   const newTodo = document.createElement("li");
-  newTodo.innerHTML = input.value;
-  input.value = "";
-  todoItem.append(newTodo);
+  const deleteButton = document.createElement("button");
+  const trashIcon = document.createElement("i");
+
+  newTodo.taskName = input.value;
+  newTodo.innerHTML = newTodo.taskName.substring(0, 20);
+  if (newTodo.taskName.length > 20) {
+    newTodo.innerHTML += "...";
+  }
+
+  trashIcon.classList.add("fas", "fa-trash");
+  deleteButton.append(trashIcon);
+  deleteButton.classList.add("delete-btn");
+  deleteButton.addEventListener("click",() => deleteTodo(todoItem));
+
+  newTodo.addEventListener("click", () => alert(newTodo.taskName));
+  newTodo.classList.add("todo-item");
+
+  todoItem.append(newTodo, deleteButton);
   todoList.append(todoItem);
+
+  input.value = "";
+}
+
+function deleteTodo(todo){
+    todo.remove();
 }
 
 function changeInputPlaceholder(bool) {
