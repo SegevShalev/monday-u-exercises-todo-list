@@ -2,12 +2,16 @@ const input = document.querySelector(".todo-input");
 const addButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 
-addButton.addEventListener("click", () => addTodo(input));
-input.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    addTodo(input);
+class Main {
+  init() {
+    addButton.addEventListener("click", () => addTodo(input));
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        addTodo(input);
+      }
+    });
   }
-});
+}
 
 function addTodo(input) {
   if (input.value.length === 0) {
@@ -53,3 +57,11 @@ function changeInputPlaceholder(bool) {
   input.placeholder = "Oh I wish i could do nothing too!";
   input.classList.add("red-placeholder");
 }
+
+const main = new Main();
+
+document.addEventListener("DOMContentLoaded", function () {
+  // you should create an `init` method in your class
+  // the method should add the event listener to your "add" button
+  main.init();
+});
