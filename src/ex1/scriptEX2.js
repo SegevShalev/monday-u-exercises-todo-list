@@ -1,6 +1,9 @@
 const input = document.querySelector(".todo-input");
 const addButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
+let COUNTER = 0;
+
+const itemManager = new ItemManager();
 
 class Main {
   init() {
@@ -19,33 +22,43 @@ function addTodo(input) {
     return;
   }
   changeInputPlaceholder(true);
-  const todoItem = document.createElement("div");
-  const newTodo = document.createElement("li");
-  const deleteButton = document.createElement("button");
-  const trashIcon = document.createElement("i");
 
-  newTodo.taskName = input.value;
-  newTodo.innerHTML = newTodo.taskName.substring(0, 20);
-  if (newTodo.taskName.length > 20) {
-    newTodo.innerHTML += "...";
-  }
+  itemManager.addTodo({ name: input.value, id: ++COUNTER });
+  render();
+}
 
-  trashIcon.classList.add("fas", "fa-trash");
-  deleteButton.append(trashIcon);
-  deleteButton.classList.add("delete-btn");
-  deleteButton.addEventListener("click", () => deleteTodo(todoItem));
+function render() {
+  const todos = itemManager.todos;
+  todoList.replaceChildren();
 
-  newTodo.addEventListener("click", () => alert(newTodo.taskName));
-  newTodo.classList.add("todo-item");
+  todos.forEach((todo) => {
+    const todoItem = document.createElement("div");
+    const newTodo = document.createElement("li");
+    const deleteButton = document.createElement("button");
 
-  todoItem.append(newTodo, deleteButton);
-  todoList.append(todoItem);
+    newTodo.taskName = todo.name;
+    newTodo.innerHTML = newTodo.taskName.substring(0, 20);
+    if (newTodo.taskName.length > 20) {
+      newTodo.innerHTML += "...";
+    }
+    const trashIcon = document.createElement("i");
+    trashIcon.classList.add("fas", "fa-trash");
+    deleteButton.append(trashIcon);
+    deleteButton.classList.add("delete-btn");
+    deleteButton.addEventListener("click", () => deleteTodo(todo));
 
+    newTodo.addEventListener("click", () => alert(newTodo.taskName));
+    newTodo.classList.add("todo-item");
+    todoItem.append(newTodo, deleteButton);
+
+    todoList.append(todoItem);
+  });
   input.value = "";
 }
 
 function deleteTodo(todo) {
-  todo.remove();
+  itemManager.removeTodo(todo);
+  render();
 }
 
 function changeInputPlaceholder(bool) {
