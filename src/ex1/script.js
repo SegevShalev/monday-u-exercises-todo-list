@@ -1,5 +1,6 @@
 const input = document.querySelector(".todo-input");
-const addButton = document.querySelector(".todo-button");
+const addButton = document.querySelector(".add-todo-button");
+const deleteAll = document.querySelector(".todo-button-delete-all");
 const todoList = document.querySelector(".todo-list");
 let COUNTER = 0;
 
@@ -9,6 +10,7 @@ const itemManager = new ItemManager();
 class Main {
   init() {
     addButton.addEventListener("click", () => addTodo(input));
+    deleteAll.addEventListener("click", () => deleteAllTodos());
     input.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         addTodo(input);
@@ -78,6 +80,11 @@ function render() {
 
 function deleteTodo(todo) {
   itemManager.removeTodo(todo);
+  render();
+}
+
+function deleteAllTodos() {
+  itemManager.removeAllTodos();
   render();
 }
 
