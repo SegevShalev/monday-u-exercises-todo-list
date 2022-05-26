@@ -3,6 +3,7 @@ const addButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 let COUNTER = 0;
 
+const pokemonClient = new PokemonClient();
 const itemManager = new ItemManager();
 
 class Main {
@@ -23,8 +24,27 @@ function addTodo(input) {
   }
   changeInputPlaceholder(true);
 
-  itemManager.addTodo({ name: input.value, id: ++COUNTER });
-  render();
+  let inputArray = input.value.split(",");
+
+  const isInputContainNaN = inputArray.some((item) => {
+    let parseToInt = parseInt(item);
+    return isNaN(parseToInt);
+  });
+  if (isInputContainNaN) {
+    itemManager.addTodo({ name: input.value, id: ++COUNTER });
+    return render();
+  }
+  let promisesArray = inputArray.map((item) => {
+    return pokemonClient.fetchPokemon(item);
+  });
+  Promise.all(promisesArray).then((promiseFullfield) => {
+    promiseFullfield.forEach((data) => {
+      if (data?.name) {
+        itemManager.addTodo({ name: `fetch ${data.name}`, id: ++COUNTER });
+        return render();
+      }
+    });
+  });
 }
 
 function render() {
