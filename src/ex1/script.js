@@ -28,12 +28,12 @@ function addTodo(input) {
 
   let inputArray = input.value.split(",");
 
-  const isInputContainNaN = inputArray.some((item) => {
+  const isInputContainNaN = [...inputArray].some((item) => {
     let parseToInt = parseInt(item);
     return isNaN(parseToInt);
   });
   if (isInputContainNaN) {
-    itemManager.addTodo({ name: input.value, id: ++COUNTER });
+    itemManager.addTodo({ name: input.value, id: ++COUNTER, pokemonId: -1 });
     return render();
   }
   let promisesArray = inputArray.map((item) => {
@@ -42,8 +42,18 @@ function addTodo(input) {
   Promise.all(promisesArray).then((promiseFullfield) => {
     promiseFullfield.forEach((data) => {
       if (data?.name) {
-        itemManager.addTodo({ name: `fetch ${data.name}`, id: ++COUNTER });
-        return render();
+        const isPokemonIdExist = [...itemManager.todos].some((item) => {
+          return item.pokemonId === data.id;
+        });
+        if (!isPokemonIdExist) {
+          itemManager.addTodo({
+            name: `fetch ${data.name}`,
+            id: ++COUNTER,
+            pokemonId: data.id,
+          });
+          return render();
+        }
+        alert(`pokemon id ${data.id} already exist!`);
       }
     });
   });
