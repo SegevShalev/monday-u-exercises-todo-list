@@ -1,6 +1,5 @@
 class PokemonClient {
   constructor() {
-    this.fetchArray = [];
     this.url = `https://pokeapi.co/api/v2/pokemon`;
   }
 
