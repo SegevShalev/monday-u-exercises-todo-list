@@ -41,13 +41,20 @@ function addTodo(input) {
   });
   Promise.all(promisesArray).then((promiseFullfield) => {
     promiseFullfield.forEach((data) => {
+      console.log(data.types);
       if (data?.name) {
         const isPokemonIdExist = [...itemManager.todos].some((item) => {
           return item.pokemonId === data.id;
         });
+        const pokemontypes = data.types.map((typeItem) => {
+          return typeItem.type.name;
+        });
+        const detailedPokemon = `${data.name}, type:${pokemontypes.join(
+          " - "
+        )}`;
         if (!isPokemonIdExist) {
           itemManager.addTodo({
-            name: `fetch ${data.name}`,
+            name: detailedPokemon,
             id: ++COUNTER,
             pokemonId: data.id,
           });
