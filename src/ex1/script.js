@@ -116,6 +116,7 @@ function isInputValid(bool) {
 }
 
 const main = new Main();
+//reverting chagnes
 
 document.addEventListener("DOMContentLoaded", function () {
   // you should create an `init` method in your class
