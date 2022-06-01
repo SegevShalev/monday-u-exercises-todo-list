@@ -8,6 +8,6 @@ export default class PokemonClient {
   async fetchPokemon(pokemonId) {
     return fetch(`${this.url}/${pokemonId}`)
       .then((response) => response.json())
-      .catch(() => alert(`Failed to fetch with id ${pokemonId}`));
+      .catch(() => console.log(`Failed to fetch with id ${pokemonId}`));
   }
 }
