@@ -2,7 +2,7 @@ import chalk from "chalk";
 import { Command } from "commander";
 import PokemonClient from "./pokemonClient.js";
 
-import { addTodo, getId, getAllTodos } from "./fileManager.js";
+import { addTodo, getId, getAllTodos, deleteTodo } from "./fileManager.js";
 
 let id = 0;
 
@@ -38,14 +38,23 @@ program
     `This command will return all the todos on file!
     to get all todos command "node index get " on console!`
   )
+
   .action(async () => {
     const allTodos = await getAllTodos();
     allTodos.forEach((todo) => {
       console.log(todo.name);
     });
   });
-//program get
-//program getall
-//program delete
+
+program
+  .command("delete")
+  .description(
+    `This command will delete the todo by id!
+      to delete todo command "node index delete <id> " on console!`
+  )
+  .argument("<number>", "id")
+  .action(async (id) => {
+    await deleteTodo(id);
+  });
 
 program.parse();
