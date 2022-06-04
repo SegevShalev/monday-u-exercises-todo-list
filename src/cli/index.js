@@ -1,7 +1,8 @@
-import chalk from "chalk";
-import { Command } from "commander";
-import PokemonClient from "./pokemonClient.js";
+#!/usr/bin/env node
 
+import { Command } from "commander";
+
+import PokemonClient from "./pokemonClient.js";
 import { addTodo, getId, getAllTodos, deleteTodo } from "./fileManager.js";
 
 let id = 0;
@@ -25,6 +26,7 @@ program
       return addTodo({ name: input, id: id, pokemonId: -1 });
     }
     pokemonClient.fetchPokemon(input).then((data) => {
+      console.log(data);
       return addTodo({
         name: `catch ${data.name}`,
         id,
@@ -38,12 +40,8 @@ program
     `This command will return all the todos on file!
     to get all todos command "node index get " on console!`
   )
-
   .action(async () => {
-    const allTodos = await getAllTodos();
-    allTodos.forEach((todo) => {
-      console.log(todo.name);
-    });
+    await getAllTodos();
   });
 
 program
