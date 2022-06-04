@@ -26,7 +26,6 @@ program
       return addTodo({ name: input, id: id, pokemonId: -1 });
     }
     pokemonClient.fetchPokemon(input).then((data) => {
-      console.log(data);
       return addTodo({
         name: `catch ${data.name}`,
         id,
