@@ -1,6 +1,10 @@
 import { promises as fs } from "fs";
 import { createWriteStream } from "fs";
-import { printBgGreenUl, printInverseBold, printBgRed } from "./chalkUtils.js";
+import {
+  printBgGreenUl,
+  printInverseBold,
+  printBgRedDeleted,
+} from "./chalkUtils.js";
 
 let arrayBuffer = [];
 const todosFile = "todos.json";
@@ -9,12 +13,16 @@ export async function addTodo(data) {
   let tempArray = await getTodosHandler();
   try {
     tempArray.push(data);
-    await fs.writeFile("todos.json", JSON.stringify(tempArray, null, 2));
+    writeToFile(tempArray);
     arrayBuffer = [...tempArray];
     printBgGreenUl("new todo added!");
   } catch (err) {
     console.log(err);
   }
+}
+
+async function writeToFile(newTodosArray) {
+  await fs.writeFile("todos.json", JSON.stringify(newTodosArray, null, 2));
 }
 
 async function getTodosHandler() {
@@ -44,16 +52,16 @@ export async function deleteTodo(id) {
   tempArray = [...tempArray].filter((todo) => {
     if (id != todo.id) {
       if (todo.id > id) {
-        //re-assign id
+        /* re-assign id */
         todo.id--;
       }
       return todo;
     } else {
-      printBgRed(todo.name);
+      printBgRedDeleted(todo.name);
     }
   });
   try {
-    await fs.writeFile(todosFile, JSON.stringify(tempArray, null, 2));
+    writeToFile(tempArray);
     arrayBuffer = [...tempArray];
   } catch (err) {
     console.log(err);

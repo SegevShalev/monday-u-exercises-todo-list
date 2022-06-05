@@ -16,7 +16,7 @@ program
   .command("add")
   .description(
     `To add new todo please enter a String or number to catch a pokemon!
-      to add todo command "node index add <input>" on console!`
+      to add todo command "npm run cli add <input>" on console!`
   )
   .argument("<string>", "input")
   .action(async (input) => {
@@ -37,7 +37,7 @@ program
   .command("get")
   .description(
     `This command will return all the todos on file!
-    to get all todos command "node index get " on console!`
+    to get all todos command "npm run cli get " on console!`
   )
   .action(async () => {
     await getAllTodos();
@@ -47,7 +47,7 @@ program
   .command("delete")
   .description(
     `This command will delete the todo by id!
-      to delete todo command "node index delete <id> " on console!`
+      to delete todo command "npm run cli delete <id> " on console!`
   )
   .argument("<number>", "id")
   .action(async (id) => {

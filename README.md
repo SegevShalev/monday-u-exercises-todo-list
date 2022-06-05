@@ -1,17 +1,21 @@
-# Welcome to monday-u!
+# EX3!
 
-Welcome to monday-u official github repository! We are very excited to have you here!  
-This is going to be so much fun! Here are a few general details:
+Welcome to the todo app, now running on CLI !
 
 ![](https://i.ytimg.com/vi/6_zFLsW7z2E/maxresdefault.jpg)
 
-## Exercises list
+The requirements:
 
-**Exercise 1** - [HTML, CSS, JS.](https://github.com/monday-u-com/monday-u-exercises/tree/master/src/ex1)  
+- [x] Build node.js cli todo app
+- [x] Detailed help option
+- [x] Read/Write/Delete todos from a file
+      Bonus
+- [x] Publish your code as npm package and run it with npx
+- [x] Add colors to your cli tool
+- [ ] Add Inquirer.js and make you cli tool interactive
+- [ ] Display pokemon image (ascii art)
 
-# Submitting your tasks
-Create a pull request in your forked repository and send to your mentor when it's ready.
-
-# Solutions
-
-Every friday a new exercise and the solution for previous one will be published
+How to run it?
+1)You can run it with: npm run +Command - look for for the instructions on the CLI
+2)npx segev-cli +Command
+3)You can also navigate to ./src/cli and then run: node index +Command
