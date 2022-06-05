@@ -13,12 +13,12 @@ The requirements:
 - [x] Publish your code as npm package and run it with npx
 - [x] Add colors to your cli tool
 - [ ] Add Inquirer.js and make you cli tool interactive
-- [ ] Display pokemon image (ascii art)
+- [x] Display pokemon image (ascii art)
 
 ## How to run it?
 
-First, try the help option! :`npm run cli -- Command -h`
+First things first!, try the help option! :`npm run cli -- Command -h`
 
-1. You can run it with: `pm run +Command`
+1. You can run it with: `npm run +Command`
 2. `npx segev-cli +Command`
 3. You can also navigate to ./src/cli and then run: `node index +Command`

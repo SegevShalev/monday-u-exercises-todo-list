@@ -3,9 +3,12 @@
 import { Command } from "commander";
 
 import PokemonClient from "./pokemonClient.js";
-import { addTodo, printAllTodos, deleteTodo } from "./fileManager.js";
-
-let id = 0;
+import {
+  addTodo,
+  printAllTodos,
+  deleteTodo,
+  displayAscii,
+} from "./fileManager.js";
 
 const program = new Command();
 const pokemonClient = new PokemonClient();
@@ -44,11 +47,23 @@ program
   .command("delete")
   .description(
     `This command will delete the todo by id!
-      to delete todo command "npm run cli delete <id> " on console!`
+      to delete todo command "npm run cli delete <todo number> " on console!`
   )
   .argument("<number>", "id")
   .action(async (id) => {
     await deleteTodo(id);
+  });
+
+program
+  .command("catch")
+  .description(
+    `
+  This command will display the Todo in Ascii!
+    to display in ascii command "npm run cli catch <todo number> on console! `
+  )
+  .argument("<number>", "id")
+  .action(async (id) => {
+    await displayAscii(id);
   });
 
 program.parse();

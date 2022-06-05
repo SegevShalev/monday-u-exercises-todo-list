@@ -1,10 +1,13 @@
 import { promises as fs } from "fs";
 import { createWriteStream } from "fs";
+
 import {
   printBgGreenUl,
   printInverseBold,
   printBgRedDeleted,
 } from "./chalkUtils.js";
+
+import { pokemonToAscii, textToAscii } from "./asciiUtils.js";
 
 let todosArray = [];
 const TODOS_FILE = "todos.json";
@@ -54,4 +57,15 @@ export async function deleteTodo(id) {
   } catch (err) {
     console.log(err);
   }
+}
+
+export async function displayAscii(id) {
+  const currentTodosArray = await getTodos();
+  let requestedTodo = currentTodosArray[id];
+  if (requestedTodo.pokemonId !== -1) {
+    await pokemonToAscii(requestedTodo.pokemonId);
+    return;
+  }
+  textToAscii(requestedTodo.name);
+  return;
 }
