@@ -32,7 +32,7 @@ h1 {
   margin: 20px;
   margin-bottom: 50px;
 }
-.modal-add-task button {
+.modal-add-task .add-todo-button {
   background-color: white;
   margin-left: 10px;
   padding: 15px;
@@ -41,9 +41,23 @@ h1 {
   transition: all 0.5s ease;
 }
 
-.modal-add-task button:hover {
+.modal-add-task .add-todo-button:hover {
   background-color: aqua;
   color: white;
+}
+.modal-add-task .todo-button-delete-all {
+  background-color: white;
+  margin-left: 10px;
+  padding: 15px;
+  border: none;
+  border-radius: 20px;
+  transition: all 0.5s ease;
+}
+
+.modal-add-task .todo-button-delete-all:hover {
+  background-color: black;
+  color: red;
+  font-size: 20px;
 }
 .modal-add-task input {
   padding: 10px;
@@ -67,6 +81,7 @@ h1 {
   transition: all 0.4s ease;
   font-size: 20px;
   margin-bottom: 5%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .todo-item:hover {
@@ -82,7 +97,7 @@ h1 {
   width: 10%;
   height: 10%;
   background-color: white;
-  border:none;
+  border: none;
 }
 
 .delete-btn * {
@@ -93,4 +108,8 @@ h1 {
   padding: 5px;
   background-color: red;
   color: white;
+}
+
+.display-none {
+  display: none;
 }
