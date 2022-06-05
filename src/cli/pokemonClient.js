@@ -6,10 +6,10 @@ export default class PokemonClient {
   }
 
   async fetchPokemon(pokemonId) {
-    let res = await fetch(this.url + "/" + pokemonId);
+    const res = await fetch(this.url + "/" + pokemonId);
     if (!res.ok) {
       console.error("failed to catch pokemon", { status: res.status });
-      throw Error(`failed to catch pokemon with id${pokemonId}`);
+      throw Error(`failed to catch pokemon with id ${pokemonId}`);
     }
     return await res.json();
   }

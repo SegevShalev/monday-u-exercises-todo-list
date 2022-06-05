@@ -3,7 +3,7 @@
 import { Command } from "commander";
 
 import PokemonClient from "./pokemonClient.js";
-import { addTodo, getId, getAllTodos, deleteTodo } from "./fileManager.js";
+import { addTodo, printAllTodos, deleteTodo } from "./fileManager.js";
 
 let id = 0;
 
@@ -20,15 +20,12 @@ program
   )
   .argument("<string>", "input")
   .action(async (input) => {
-    id = await getId();
-
     if (isNaN(input)) {
-      return addTodo({ name: input, id: id, pokemonId: -1 });
+      return addTodo({ name: input, pokemonId: -1 });
     }
     pokemonClient.fetchPokemon(input).then((data) => {
       return addTodo({
         name: `catch ${data.name}`,
-        id,
         pokemonId: data.id,
       });
     });
@@ -40,7 +37,7 @@ program
     to get all todos command "npm run cli get " on console!`
   )
   .action(async () => {
-    await getAllTodos();
+    await printAllTodos();
   });
 
 program

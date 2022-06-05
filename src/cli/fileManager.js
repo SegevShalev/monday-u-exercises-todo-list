@@ -6,15 +6,15 @@ import {
   printBgRedDeleted,
 } from "./chalkUtils.js";
 
-let arrayBuffer = [];
-const todosFile = "todos.json";
+let todosArray = [];
+const TODOS_FILE = "todos.json";
 
 export async function addTodo(data) {
-  let tempArray = await getTodosHandler();
+  let tempArray = await getTodos();
   try {
     tempArray.push(data);
     writeToFile(tempArray);
-    arrayBuffer = [...tempArray];
+    todosArray = [...tempArray];
     printBgGreenUl("new todo added!");
   } catch (err) {
     console.log(err);
@@ -22,47 +22,35 @@ export async function addTodo(data) {
 }
 
 async function writeToFile(newTodosArray) {
-  await fs.writeFile("todos.json", JSON.stringify(newTodosArray, null, 2));
+  await fs.writeFile(TODOS_FILE, JSON.stringify(newTodosArray, null, 2));
 }
 
-async function getTodosHandler() {
+/* return all the todos or create a file if not found one. */
+async function getTodos() {
   try {
-    arrayBuffer = await JSON.parse(await fs.readFile(todosFile));
-    return [...arrayBuffer];
+    todosArray = await JSON.parse(await fs.readFile(TODOS_FILE));
+    return [...todosArray];
   } catch {
-    createWriteStream("todos.json");
-    return [...arrayBuffer];
+    createWriteStream(TODOS_FILE);
+    return [...todosArray];
   }
 }
 
-export async function getAllTodos() {
-  const allTodos = await getTodosHandler();
+export async function printAllTodos() {
+  const allTodos = await getTodos();
   allTodos.forEach((todo) => {
     printInverseBold(todo.name);
   });
 }
 
-export async function getId() {
-  let tempArray = await getTodosHandler();
-  return [...tempArray].length;
-}
-
 export async function deleteTodo(id) {
-  let tempArray = await getTodosHandler();
-  tempArray = [...tempArray].filter((todo) => {
-    if (id != todo.id) {
-      if (todo.id > id) {
-        /* re-assign id */
-        todo.id--;
-      }
-      return todo;
-    } else {
-      printBgRedDeleted(todo.name);
-    }
-  });
+  let tempArray = await getTodos();
+  const deletedTodo = tempArray[id].name;
+  tempArray.splice(id, 1);
   try {
     writeToFile(tempArray);
-    arrayBuffer = [...tempArray];
+    printBgRedDeleted(deletedTodo);
+    todosArray = [...tempArray];
   } catch (err) {
     console.log(err);
   }
