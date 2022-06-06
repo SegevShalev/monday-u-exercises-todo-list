@@ -1,6 +1,6 @@
 {
   "name": "segev-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "bin": "./src/cli/index.js",
   "description": "",
   "main": "index.js",
