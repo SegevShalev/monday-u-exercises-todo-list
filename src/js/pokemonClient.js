@@ -1,4 +1,4 @@
-export default class PokemonClient {
+class PokemonClient {
   constructor() {
     this.url = `https://pokeapi.co/api/v2/pokemon`;
   }
