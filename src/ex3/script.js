@@ -1,4 +1,4 @@
-const input = document.querySelector(".todo-input");
+const userInput = document.querySelector(".todo-input");
 const addButton = document.querySelector(".add-todo-button");
 const deleteAll = document.querySelector(".todo-button-delete-all");
 const todoList = document.querySelector(".todo-list");
@@ -8,14 +8,19 @@ const pokemonClient = new PokemonClient();
 const itemManager = new ItemManager();
 
 class Main {
+  constructor() {}
   init() {
-    addButton.addEventListener("click", () => addTodo(input));
+    addButton.addEventListener("click", () => addTodo(userInput));
     deleteAll.addEventListener("click", () => deleteAllTodos());
-    input.addEventListener("keypress", (e) => {
+    userInput.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
-        addTodo(input);
+        addTodo(userInput);
       }
     });
+  }
+
+  addTodoHandler(userInput) {
+    addTodo(userInput);
   }
 }
 
@@ -41,7 +46,6 @@ function addTodo(input) {
   });
   Promise.all(promisesArray).then((promiseFullfield) => {
     promiseFullfield.forEach((data) => {
-      console.log(data.types);
       if (data?.name) {
         const isPokemonIdExist = [...itemManager.todos].some((item) => {
           return item.pokemonId === data.id;
@@ -92,7 +96,7 @@ function render() {
 
     todoList.append(todoItem);
   });
-  input.value = "";
+  userInput.value = "";
 }
 
 function deleteTodo(todo) {
@@ -107,12 +111,12 @@ function deleteAllTodos() {
 
 function isInputValid(bool) {
   if (bool) {
-    input.placeholder = "What on your mind?";
-    input.classList.remove("red-placeholder");
+    userInput.placeholder = "What on your mind?";
+    userInput.classList.remove("red-placeholder");
     return;
   }
-  input.placeholder = "Oh I wish i could do nothing too!";
-  input.classList.add("red-placeholder");
+  userInput.placeholder = "Oh I wish i could do nothing too!";
+  userInput.classList.add("red-placeholder");
 }
 
 const main = new Main();
