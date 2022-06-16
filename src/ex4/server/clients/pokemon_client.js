@@ -7,5 +7,5 @@ export async function fetchPokemon(pokemonId) {
     console.error("failed to catch pokemon", { status: res.status });
     throw Error(`failed to catch pokemon with id ${pokemonId}`);
   }
-  return res.name;
+  return res;
 }
