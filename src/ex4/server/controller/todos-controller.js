@@ -7,9 +7,6 @@ async function getAllTodos(req, res) {
 }
 
 async function addTodo(req, res) {
-  console.log("req.body");
-  // const newTodo = { name: req.body.name, pokemonId: req.body.pokemonId };
-  // await TodoService.addTodo(newTodo);
   if (isNaN(req.body.name)) {
     const newTodo = await TodoService.addTodo({
       name: req.body.name,

@@ -9,7 +9,7 @@ export async function addTodo(data) {
   let tempArray = await getTodos();
   try {
     tempArray.push(data);
-    writeToFile(tempArray);
+    await writeToFile(tempArray);
     todosArray = [...tempArray];
     return data;
   } catch (err) {
@@ -31,7 +31,6 @@ export async function getTodos() {
 export async function deleteTodo(id) {
   let tempArray = await getTodos();
   const deletedTodo = tempArray[id].name;
-  console.log(deletedTodo, "please let me delete");
   tempArray.splice(id, 1);
   try {
     writeToFile(tempArray);
