@@ -6,10 +6,12 @@ import {
   deleteTodo,
 } from "../controller/todos-controller.js";
 
+import { logger } from "../middlewares/middlewareDemo.js";
+
 const todosRouter = express.Router();
 
-todosRouter.get("/", getAllTodos);
-todosRouter.post("/", addTodo);
-todosRouter.delete("/", deleteTodo);
+todosRouter.get("/", logger, getAllTodos);
+todosRouter.post("/", logger, addTodo);
+todosRouter.delete("/:id", logger, deleteTodo);
 
 export default todosRouter;

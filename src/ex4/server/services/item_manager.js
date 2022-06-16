@@ -30,15 +30,29 @@ export async function getTodos() {
 
 export async function deleteTodo(id) {
   let tempArray = await getTodos();
-  const deletedTodo = tempArray[id].name;
-  tempArray.splice(id, 1);
+  tempArray = tempArray.filter((todo) => {
+    console.log(todo);
+    console.log(id);
+    if (todo.id !== id) {
+      return todo;
+    }
+  });
+
+  // console.log(tempArray);
+  // const deletedTodo = tempArray[id].name;
+  // tempArray.splice(id, 1);
   try {
     writeToFile(tempArray);
     todosArray = [...tempArray];
-    return deletedTodo;
+    return;
   } catch (err) {
     console.log(err);
   }
+}
+
+export async function getLength() {
+  const todos = await getTodos();
+  return todos.length;
 }
 
 async function writeToFile(newTodosArray) {

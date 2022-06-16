@@ -113,3 +113,12 @@ h1 {
 .display-none {
   display: none;
 }
+
+.loader {
+  padding: 0px;
+  margin: 0px;
+}
+
+.loader.off {
+  display: none;
+}

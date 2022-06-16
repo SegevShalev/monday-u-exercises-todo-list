@@ -7,8 +7,10 @@ async function getAllTodos(req, res) {
 }
 
 async function addTodo(req, res) {
+  const length = await TodoService.getLength();
   if (isNaN(req.body.name)) {
     const newTodo = await TodoService.addTodo({
+      id: req.body.name + length,
       name: req.body.name,
       pokemonId: -1,
     });
@@ -16,7 +18,7 @@ async function addTodo(req, res) {
   }
   const pokemon = await fetchPokemon(req.body.name);
   const newTodo = await TodoService.addTodo({
-    //test!*
+    id: pokemon.name + length,
     name: pokemon.name,
     pokemonId: req.body.name,
   });
@@ -24,20 +26,9 @@ async function addTodo(req, res) {
 }
 
 async function deleteTodo(req, res) {
+  console.log(req.params, "req");
   const deletedTodo = await TodoService.deleteTodo(req.body.id);
   return res.status(200).json("deleted: " + deletedTodo);
-}
-
-async function addToTodoList(input) {
-  if (isNaN(input)) {
-    return addTodo({ name: input, pokemonId: -1 });
-  }
-  pokemonClient.fetchPokemon(input).then((data) => {
-    return addTodo({
-      name: `catch ${data.name}`,
-      pokemonId: data.id,
-    });
-  });
 }
 
 export { getAllTodos, addTodo, deleteTodo };

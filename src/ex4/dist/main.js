@@ -2,10 +2,9 @@ const userInput = document.querySelector(".todo-input");
 const addButton = document.querySelector(".add-todo-button");
 const deleteAll = document.querySelector(".todo-button-delete-all");
 const todoList = document.querySelector(".todo-list");
+const loader = document.getElementById("load");
 
-import { getTodos, addNewTodo } from "./clients/item_client.js";
-
-let itemsCount = 0;
+import { getTodos, addNewTodo, removeTodo } from "./clients/item_client.js";
 
 class Main {
   constructor() {}
@@ -17,7 +16,9 @@ class Main {
       }
     });
     deleteAll.addEventListener("click", () => deleteAllTodos());
+    loader.classList.remove("off");
     render();
+    loader.classList.add("off");
   }
 }
 
@@ -26,10 +27,11 @@ async function addTodo(input) {
     isInputValid(false);
     return;
   }
-
   isInputValid(true);
-
+  loader.classList.remove("off");
   await addNewTodo(input.value);
+  loader.classList.add("off");
+
   await render();
 }
 
@@ -63,9 +65,8 @@ async function render() {
 }
 
 async function deleteTodo(todo) {
-  console.log(todo);
-  // itemManager.removeTodo(todo);
-  // render();
+  await removeTodo(todo.id);
+  await render();
 }
 
 async function deleteAllTodos() {
