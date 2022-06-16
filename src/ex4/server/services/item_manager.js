@@ -11,7 +11,7 @@ export async function addTodo(data) {
     tempArray.push(data);
     writeToFile(tempArray);
     todosArray = [...tempArray];
-    // printBgGreenUl("new todo added!");
+    return data;
   } catch (err) {
     console.log(err);
   }
@@ -30,12 +30,13 @@ export async function getTodos() {
 
 export async function deleteTodo(id) {
   let tempArray = await getTodos();
-  //   const deletedTodo = tempArray[id].name;
+  const deletedTodo = tempArray[id].name;
+  console.log(deletedTodo, "please let me delete");
   tempArray.splice(id, 1);
   try {
     writeToFile(tempArray);
-    // printBgRedDeleted(deletedTodo);
     todosArray = [...tempArray];
+    return deletedTodo;
   } catch (err) {
     console.log(err);
   }
