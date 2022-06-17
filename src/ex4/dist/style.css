@@ -117,6 +117,8 @@ h1 {
 .loader {
   padding: 0px;
   margin: 0px;
+  color: red;
+  font-weight: 800;
 }
 
 .loader.off {

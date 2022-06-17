@@ -41,7 +41,10 @@ async function addTodo(input) {
 }
 
 async function render() {
+  loader.classList.remove("off");
   const todos = await getTodos();
+  loader.classList.add("off");
+
   todoList.replaceChildren();
 
   todos.forEach((todo) => {
@@ -70,12 +73,16 @@ async function render() {
 }
 
 async function deleteTodo(todo) {
+  loader.classList.remove("off");
   await removeTodo(todo.id);
+  loader.classList.add("off");
   await render();
 }
 
 async function deleteAllTodos() {
+  loader.classList.remove("off");
   await removeAllTodos();
+  loader.classList.add("off");
   await render();
 }
 

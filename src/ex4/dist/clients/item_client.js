@@ -1,12 +1,19 @@
 const url = `http://localhost:8080/api`;
 
 export async function getTodos() {
-  let fetchData = (await axios.get(url)).data;
-  return fetchData;
+  let res = await fetch(url, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (!res.ok) {
+    return { name: "Failed to get Todos" };
+  }
+  return await res.json();
 }
 
 export async function addNewTodo(text) {
-  const res = await fetch(url, {
+  await fetch(url, {
     method: "POST",
     body: JSON.stringify({ name: text }),
     headers: { "Content-Type": "application/json" },
