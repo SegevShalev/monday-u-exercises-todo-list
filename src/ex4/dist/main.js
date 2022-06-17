@@ -4,7 +4,12 @@ const deleteAll = document.querySelector(".todo-button-delete-all");
 const todoList = document.querySelector(".todo-list");
 const loader = document.getElementById("load");
 
-import { getTodos, addNewTodo, removeTodo } from "./clients/item_client.js";
+import {
+  getTodos,
+  addNewTodo,
+  removeTodo,
+  removeAllTodos,
+} from "./clients/item_client.js";
 
 class Main {
   constructor() {}
@@ -70,8 +75,8 @@ async function deleteTodo(todo) {
 }
 
 async function deleteAllTodos() {
-  // itemManager.removeAllTodos();
-  // render();
+  await removeAllTodos();
+  await render();
 }
 
 function isInputValid(bool) {

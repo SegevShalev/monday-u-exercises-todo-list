@@ -31,19 +31,22 @@ export async function getTodos() {
 export async function deleteTodo(id) {
   let tempArray = await getTodos();
   tempArray = tempArray.filter((todo) => {
-    console.log(todo);
-    console.log(id);
     if (todo.id !== id) {
       return todo;
     }
   });
-
-  // console.log(tempArray);
-  // const deletedTodo = tempArray[id].name;
-  // tempArray.splice(id, 1);
   try {
     writeToFile(tempArray);
     todosArray = [...tempArray];
+    return;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function deleteAll() {
+  try {
+    writeToFile([]);
     return;
   } catch (err) {
     console.log(err);

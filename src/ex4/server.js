@@ -1,5 +1,5 @@
 import express from "express";
-
+import bodyParser from "body-parser";
 import cors from "cors";
 
 import todosRouter from "./server/routes/api.js";
@@ -19,8 +19,8 @@ app.use(
     origin: "*",
   })
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //routers
 

@@ -26,9 +26,13 @@ async function addTodo(req, res) {
 }
 
 async function deleteTodo(req, res) {
-  console.log(req.params, "req");
-  const deletedTodo = await TodoService.deleteTodo(req.body.id);
+  const deletedTodo = await TodoService.deleteTodo(req.params.id);
   return res.status(200).json("deleted: " + deletedTodo);
 }
 
-export { getAllTodos, addTodo, deleteTodo };
+async function deleteAllTodos(req, res) {
+  await TodoService.deleteAll();
+  return res.status(201).json("everything deleted");
+}
+
+export { getAllTodos, addTodo, deleteTodo, deleteAllTodos };
