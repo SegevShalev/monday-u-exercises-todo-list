@@ -3,7 +3,7 @@
   "version": "1.0.6",
   "description": "",
   "main": "server.js",
-  "type": "module",
+
   "nodemonConfig": {
     "ignore": [
       "todos.json"

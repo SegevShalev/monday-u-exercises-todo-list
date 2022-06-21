@@ -1,14 +1,8 @@
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-import todosRouter from "./server/routes/api.js";
-
-//__dirname is not supported in es6
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const todosRouter = require("./server/routes/api.js");
 
 const app = express();
 const PORT = 8080;

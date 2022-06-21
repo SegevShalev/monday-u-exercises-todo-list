@@ -1,8 +1,8 @@
-import axios from "axios";
+const axios = require("axios");
 const url = "https://pokeapi.co/api/v2/pokemon";
 let requestsArray = [];
 
-export async function fetchPokemon(pokemonId) {
+async function fetchPokemon(pokemonId) {
   const date = new Date();
   let curretHour = parseInt(date.getHours());
   let curretMinute = parseInt(date.getMinutes());
@@ -36,3 +36,5 @@ export async function fetchPokemon(pokemonId) {
     return { name: "something went wrong" };
   }
 }
+
+module.exports = { fetchPokemon };

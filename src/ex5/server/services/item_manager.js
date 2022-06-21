@@ -1,12 +1,12 @@
-import { Todo } from "../db/models";
-import { promises as fs } from "fs";
-import { createWriteStream } from "fs";
+// import Todo from "../db/models/todo.js";
+const { promises } = require("fs");
+const fs = promises;
+const { createWriteStream } = require("fs");
 
 let todosArray = [];
 const TODOS_FILE = "todos.json";
 
-export async function addTodo(data) {
-  console.log(await Todo.findAll());
+async function addTodo(data) {
   let tempArray = await getTodos();
   try {
     tempArray.push(data);
@@ -19,7 +19,7 @@ export async function addTodo(data) {
 }
 
 /* return all the todos or create a file if not found one. */
-export async function getTodos() {
+async function getTodos() {
   try {
     todosArray = await JSON.parse(await fs.readFile(TODOS_FILE));
     return [...todosArray];
@@ -29,7 +29,7 @@ export async function getTodos() {
   }
 }
 
-export async function deleteTodo(id) {
+async function deleteTodo(id) {
   let tempArray = await getTodos();
   tempArray = tempArray.filter((todo) => {
     if (todo.id !== id) {
@@ -45,7 +45,7 @@ export async function deleteTodo(id) {
   }
 }
 
-export async function deleteAll() {
+async function deleteAll() {
   try {
     writeToFile([]);
     return;
@@ -54,7 +54,7 @@ export async function deleteAll() {
   }
 }
 
-export async function getLength() {
+async function getLength() {
   const todos = await getTodos();
   return todos.length;
 }
@@ -62,3 +62,5 @@ export async function getLength() {
 async function writeToFile(newTodosArray) {
   await fs.writeFile(TODOS_FILE, JSON.stringify(newTodosArray, null, 2));
 }
+
+module.exports = { getTodos, addTodo, deleteTodo, deleteAll, getLength };

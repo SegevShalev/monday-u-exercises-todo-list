@@ -1,5 +1,5 @@
-import * as TodoService from "../services/item_manager.js";
-import { fetchPokemon } from "../clients/pokemon_client.js";
+const TodoService = require("../services/item_manager.js");
+const { fetchPokemon } = require("../clients/pokemon_client.js");
 
 async function getAllTodos(req, res) {
   const allTodos = await TodoService.getTodos();
@@ -35,4 +35,4 @@ async function deleteAllTodos(req, res) {
   return res.status(201).json("everything deleted");
 }
 
-export { getAllTodos, addTodo, deleteTodo, deleteAllTodos };
+module.exports = { getAllTodos, addTodo, deleteTodo, deleteAllTodos };
