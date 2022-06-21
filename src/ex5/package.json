@@ -3,14 +3,15 @@
   "version": "1.0.6",
   "description": "",
   "main": "server.js",
-  "type":"module",
-  "nodemonConfig":{"ignore":["todos.json"]},
-
-
+  "type": "module",
+  "nodemonConfig": {
+    "ignore": [
+      "todos.json"
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
-
   },
   "keywords": [],
   "author": "",
@@ -25,7 +26,12 @@
     "figlet": "^1.5.2",
     "fs": "^0.0.1-security",
     "inquirer": "^8.2.4",
+    "mysql2": "^2.3.3",
     "node-fetch": "^3.2.5",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "sequelize": "^6.21.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
   }
 }

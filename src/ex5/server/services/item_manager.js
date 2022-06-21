@@ -1,4 +1,4 @@
-// The ItemManager should go here. Remember that you have to export it.
+import { Todo } from "../db/models";
 import { promises as fs } from "fs";
 import { createWriteStream } from "fs";
 
@@ -6,6 +6,7 @@ let todosArray = [];
 const TODOS_FILE = "todos.json";
 
 export async function addTodo(data) {
+  console.log(await Todo.findAll());
   let tempArray = await getTodos();
   try {
     tempArray.push(data);
