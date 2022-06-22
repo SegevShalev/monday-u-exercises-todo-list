@@ -13,7 +13,7 @@ import {
 
 class Main {
   constructor() {}
-  init() {
+  async init() {
     addButton.addEventListener("click", () => addTodo(userInput));
     userInput.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
@@ -22,7 +22,7 @@ class Main {
     });
     deleteAll.addEventListener("click", () => deleteAllTodos());
     loader.classList.remove("off");
-    render();
+    await render();
     loader.classList.add("off");
   }
 }
@@ -52,7 +52,7 @@ async function render() {
     const newTodo = document.createElement("li");
     const deleteButton = document.createElement("button");
 
-    newTodo.taskName = todo.name;
+    newTodo.taskName = todo.itemName;
     newTodo.innerHTML = newTodo.taskName.substring(0, 20);
     if (newTodo.taskName.length > 20) {
       newTodo.innerHTML += "...";
@@ -73,6 +73,7 @@ async function render() {
 }
 
 async function deleteTodo(todo) {
+  console.log(todo);
   loader.classList.remove("off");
   await removeTodo(todo.id);
   loader.classList.add("off");

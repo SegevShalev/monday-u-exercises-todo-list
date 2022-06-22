@@ -7,17 +7,17 @@ async function fetchPokemon(pokemonId) {
   let curretHour = parseInt(date.getHours());
   let curretMinute = parseInt(date.getMinutes());
   const isThisRequestExist = [...requestsArray].some((item) => {
-    if (item.id === pokemonId) {
-      if (item.hour === curretHour) {
-        if (curretMinute - item.minute < 2) {
-          return true;
-        }
-      }
+    if (
+      item.id === pokemonId &&
+      item.hour === curretHour &&
+      curretMinute - item.minute < 2
+    ) {
+      return true;
     }
   });
   if (isThisRequestExist) {
     return {
-      name: `Request overload with id: ${pokemonId}:please wait a few min before trying again`,
+      name: `Request overload with id: ${pokemonId}:please wait 2 minutes before trying again`,
     };
   }
   try {

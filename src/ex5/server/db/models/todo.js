@@ -19,8 +19,17 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      ItemName: DataTypes.STRING,
+      itemName: DataTypes.STRING,
+      createdAt: {
+        field: "created_at",
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        field: "updated_at",
+        type: DataTypes.DATE,
+      },
     },
+
     {
       sequelize,
       modelName: "Todo",

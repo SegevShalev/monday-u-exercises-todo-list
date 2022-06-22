@@ -1,66 +1,32 @@
-// import Todo from "../db/models/todo.js";
-const { promises } = require("fs");
-const fs = promises;
-const { createWriteStream } = require("fs");
-
-let todosArray = [];
-const TODOS_FILE = "todos.json";
+const { Todo } = require("../db/models");
 
 async function addTodo(data) {
-  let tempArray = await getTodos();
-  try {
-    tempArray.push(data);
-    await writeToFile(tempArray);
-    todosArray = [...tempArray];
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+  return await Todo.create({ itemName: data.name });
 }
 
-/* return all the todos or create a file if not found one. */
 async function getTodos() {
-  try {
-    todosArray = await JSON.parse(await fs.readFile(TODOS_FILE));
-    return [...todosArray];
-  } catch {
-    createWriteStream(TODOS_FILE);
-    return [...todosArray];
-  }
+  const todos = await Todo.findAll();
+  const todoArray = todos.map((item) => {
+    return item.dataValues;
+  });
+  return todoArray;
 }
 
 async function deleteTodo(id) {
-  let tempArray = await getTodos();
-  tempArray = tempArray.filter((todo) => {
-    if (todo.id !== id) {
-      return todo;
-    }
+  return await Todo.destroy({
+    where: {
+      id: id,
+    },
   });
-  try {
-    writeToFile(tempArray);
-    todosArray = [...tempArray];
-    return;
-  } catch (err) {
-    console.log(err);
-  }
 }
 
 async function deleteAll() {
-  try {
-    writeToFile([]);
-    return;
-  } catch (err) {
-    console.log(err);
-  }
+  return await Todo.destroy({ where: {} });
 }
 
 async function getLength() {
   const todos = await getTodos();
   return todos.length;
-}
-
-async function writeToFile(newTodosArray) {
-  await fs.writeFile(TODOS_FILE, JSON.stringify(newTodosArray, null, 2));
 }
 
 module.exports = { getTodos, addTodo, deleteTodo, deleteAll, getLength };
