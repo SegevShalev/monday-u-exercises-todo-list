@@ -124,3 +124,12 @@ h1 {
 .loader.off {
   display: none;
 }
+
+.status {
+  font-size: 10px;
+  padding-right: 20px;
+  width: 10%;
+  height: 10%;
+  background-color: white;
+  border: none;
+}

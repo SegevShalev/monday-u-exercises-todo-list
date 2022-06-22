@@ -9,6 +9,7 @@ import {
   addNewTodo,
   removeTodo,
   removeAllTodos,
+  changeTodoStatus,
 } from "./clients/item_client.js";
 
 class Main {
@@ -50,22 +51,27 @@ async function render() {
   todos.forEach((todo) => {
     const todoItem = document.createElement("div");
     const newTodo = document.createElement("li");
-    const deleteButton = document.createElement("button");
-
     newTodo.taskName = todo.itemName;
     newTodo.innerHTML = newTodo.taskName.substring(0, 20);
     if (newTodo.taskName.length > 20) {
       newTodo.innerHTML += "...";
     }
+    const deleteButton = document.createElement("button");
     const trashIcon = document.createElement("i");
     trashIcon.classList.add("fas", "fa-trash");
     deleteButton.append(trashIcon);
     deleteButton.classList.add("delete-btn");
     deleteButton.addEventListener("click", () => deleteTodo(todo));
 
+    const statusItem = document.createElement("input");
+    statusItem.type = "checkbox";
+    statusItem.checked = todo.status;
+    statusItem.addEventListener("click", () => changeStatus(todo));
+    statusItem.classList.add("status");
+
     newTodo.addEventListener("click", () => alert(newTodo.taskName));
     newTodo.classList.add("todo-item");
-    todoItem.append(newTodo, deleteButton);
+    todoItem.append(newTodo, statusItem, deleteButton);
 
     todoList.append(todoItem);
   });
@@ -73,7 +79,6 @@ async function render() {
 }
 
 async function deleteTodo(todo) {
-  console.log(todo);
   loader.classList.remove("off");
   await removeTodo(todo.id);
   loader.classList.add("off");
@@ -95,6 +100,13 @@ function isInputValid(bool) {
   }
   userInput.placeholder = "Oh I wish i could do nothing too!";
   userInput.classList.add("red-placeholder");
+}
+
+async function changeStatus(todo) {
+  loader.classList.remove("off");
+  await changeTodoStatus(todo.id, !todo.status);
+  loader.classList.add("off");
+  render();
 }
 
 const main = new Main();

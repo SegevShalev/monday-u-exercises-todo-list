@@ -1,4 +1,5 @@
 const url = `http://localhost:8080/api`;
+const header = { headers: { "Content-Type": "application/json" } };
 
 export async function getTodos() {
   let res = await fetch(url, {
@@ -30,6 +31,14 @@ export async function removeTodo(id) {
 export async function removeAllTodos() {
   await fetch(`${url}`, {
     method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+export async function changeTodoStatus(id, status) {
+  await fetch(`${url}/${id}/status`, {
+    method: "PATCH",
+    body: JSON.stringify({ status: status }),
     headers: { "Content-Type": "application/json" },
   });
 }

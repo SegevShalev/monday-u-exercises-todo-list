@@ -5,6 +5,7 @@ const {
   addTodo,
   deleteTodo,
   deleteAllTodos,
+  updateStatus,
 } = require("../controller/todos-controller.js");
 
 const { logger } = require("../middlewares/middlewareDemo.js");
@@ -15,5 +16,6 @@ todosRouter.get("/", logger, getAllTodos);
 todosRouter.post("/", logger, addTodo);
 todosRouter.delete("/:id", logger, deleteTodo);
 todosRouter.delete("/", logger, deleteAllTodos);
+todosRouter.patch("/:id/status", updateStatus);
 
 module.exports = todosRouter;

@@ -1,7 +1,7 @@
 const { Todo } = require("../db/models");
 
 async function addTodo(data) {
-  return await Todo.create({ itemName: data.name });
+  return await Todo.create({ itemName: data.name, status: false });
 }
 
 async function getTodos() {
@@ -29,4 +29,27 @@ async function getLength() {
   return todos.length;
 }
 
-module.exports = { getTodos, addTodo, deleteTodo, deleteAll, getLength };
+async function getTodoById(id) {
+  return await Todo.findByPk(id);
+}
+
+async function updateStatus(id, status) {
+  await Todo.update(
+    { status: status },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+}
+
+module.exports = {
+  getTodos,
+  addTodo,
+  deleteTodo,
+  deleteAll,
+  getLength,
+  getTodoById,
+  updateStatus,
+};

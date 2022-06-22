@@ -20,6 +20,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       itemName: DataTypes.STRING,
+      status: DataTypes.BOOLEAN,
+
       createdAt: {
         field: "created_at",
         type: DataTypes.DATE,

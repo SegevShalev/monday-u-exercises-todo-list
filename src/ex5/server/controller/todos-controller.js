@@ -35,4 +35,15 @@ async function deleteAllTodos(req, res) {
   return res.status(201).json("everything deleted");
 }
 
-module.exports = { getAllTodos, addTodo, deleteTodo, deleteAllTodos };
+async function updateStatus(req, res) {
+  const todo = await TodoService.updateStatus(req.params.id, req.body.status);
+  return res.status(200).json("200");
+}
+
+module.exports = {
+  getAllTodos,
+  addTodo,
+  deleteTodo,
+  deleteAllTodos,
+  updateStatus,
+};
