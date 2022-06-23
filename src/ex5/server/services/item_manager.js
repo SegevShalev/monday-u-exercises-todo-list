@@ -34,8 +34,12 @@ async function getTodoById(id) {
 }
 
 async function updateStatus(id, status) {
+  let date = new Date();
+  if (!status) {
+    date = null;
+  }
   await Todo.update(
-    { status: status },
+    { status: status, done: date },
     {
       where: {
         id: id,

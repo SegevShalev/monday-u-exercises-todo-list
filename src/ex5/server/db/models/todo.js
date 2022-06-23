@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       itemName: DataTypes.STRING,
       status: DataTypes.BOOLEAN,
+      done: DataTypes.DATE,
 
       createdAt: {
         field: "created_at",
