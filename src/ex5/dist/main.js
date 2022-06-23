@@ -3,6 +3,8 @@ const addButton = document.querySelector(".add-todo-button");
 const deleteAll = document.querySelector(".todo-button-delete-all");
 const todoList = document.querySelector(".todo-list");
 const loader = document.getElementById("load");
+const selectedTodo = document.getElementById("editTodoInput");
+const updateButtom = document.getElementById("editTodoButtom");
 
 import {
   getTodos,
@@ -10,6 +12,7 @@ import {
   removeTodo,
   removeAllTodos,
   changeTodoStatus,
+  updateTodoInput,
 } from "./clients/item_client.js";
 
 class Main {
@@ -25,6 +28,8 @@ class Main {
     loader.classList.remove("off");
     await render();
     loader.classList.add("off");
+    updateButtom.addEventListener("click", () => updateTodo());
+    selectedTodo.currectId = null;
   }
 }
 
@@ -69,7 +74,9 @@ async function render() {
     statusItem.addEventListener("click", () => changeStatus(todo));
     statusItem.classList.add("status");
 
-    newTodo.addEventListener("click", () => alert(newTodo.taskName));
+    newTodo.addEventListener("click", () =>
+      editInput(newTodo.taskName, todo.id)
+    );
     newTodo.classList.add("todo-item");
     todoItem.append(newTodo, statusItem, deleteButton);
 
@@ -107,6 +114,21 @@ async function changeStatus(todo) {
   await changeTodoStatus(todo.id, !todo.status);
   loader.classList.add("off");
   render();
+}
+
+function editInput(text, id) {
+  selectedTodo.value = text;
+  selectedTodo.currectId = id;
+}
+
+async function updateTodo() {
+  if (selectedTodo.currectId !== null && selectedTodo.value.length) {
+    await updateTodoInput(selectedTodo.currectId, selectedTodo.value);
+    selectedTodo.value = "";
+    selectedTodo.currectId = null;
+    alert("Item Updated!");
+    return await render();
+  }
 }
 
 const main = new Main();

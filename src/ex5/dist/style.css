@@ -133,3 +133,20 @@ h1 {
   background-color: white;
   border: none;
 }
+
+.selectedTodo {
+  position: absolute;
+  left: 35%;
+  top: 1%;
+}
+
+.selectedTodo * {
+  border-radius: 10px;
+  font-family: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.1em;
+}
+
+#editTodoInput {
+  width: 410px;
+  text-decoration: none;
+}

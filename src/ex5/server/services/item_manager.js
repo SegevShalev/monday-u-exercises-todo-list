@@ -48,6 +48,19 @@ async function updateStatus(id, status) {
   );
 }
 
+async function updateTodo(id, text) {
+  console.log(text);
+
+  await Todo.update(
+    { itemName: text },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+}
+
 module.exports = {
   getTodos,
   addTodo,
@@ -56,4 +69,5 @@ module.exports = {
   getLength,
   getTodoById,
   updateStatus,
+  updateTodo,
 };

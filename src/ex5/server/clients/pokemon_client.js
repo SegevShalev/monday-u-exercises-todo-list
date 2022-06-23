@@ -1,6 +1,7 @@
 const axios = require("axios");
 const url = "https://pokeapi.co/api/v2/pokemon";
 let requestsArray = [];
+const TWO_MINS = 2;
 
 async function fetchPokemon(pokemonId) {
   const date = new Date();
@@ -10,7 +11,7 @@ async function fetchPokemon(pokemonId) {
     if (
       item.id === pokemonId &&
       item.hour === curretHour &&
-      curretMinute - item.minute < 2
+      curretMinute - item.minute < TWO_MINS
     ) {
       return true;
     }

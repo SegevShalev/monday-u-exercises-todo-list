@@ -1,5 +1,6 @@
 const TodoService = require("../services/item_manager.js");
 const { fetchPokemon } = require("../clients/pokemon_client.js");
+const NONE_POKEMON_TODO = -1;
 
 async function getAllTodos(req, res) {
   const allTodos = await TodoService.getTodos();
@@ -12,7 +13,7 @@ async function addTodo(req, res) {
     const newTodo = await TodoService.addTodo({
       id: req.body.name + length,
       name: req.body.name,
-      pokemonId: -1,
+      pokemonId: NONE_POKEMON_TODO,
     });
     return res.status(201).json({ newTodo });
   }
@@ -40,10 +41,17 @@ async function updateStatus(req, res) {
   return res.status(200).json("200");
 }
 
+async function updateTodo(req, res) {
+  console.log("from controller", req.params.id, req.body.text);
+  const todo = await TodoService.updateTodo(req.params.id, req.body.text);
+  return res.status(200).json("200");
+}
+
 module.exports = {
   getAllTodos,
   addTodo,
   deleteTodo,
   deleteAllTodos,
   updateStatus,
+  updateTodo,
 };
