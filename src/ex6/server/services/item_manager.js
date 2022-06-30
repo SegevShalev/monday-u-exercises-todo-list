@@ -49,8 +49,6 @@ async function updateStatus(id, status) {
 }
 
 async function updateTodo(id, text) {
-  console.log(text);
-
   await Todo.update(
     { itemName: text },
     {
