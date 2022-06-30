@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import styles from "../style/TodosHeader.module.css";
 import { addTodo, removeAllTodos } from "../todos-client";
 import { MdOutlineAddCircle, MdDeleteSweep } from "react-icons/md";
@@ -9,8 +9,12 @@ import {
 
 export default function TodosHeader({ onItemAdd }) {
   const [inputText, setInputText] = useState("");
-
   const [unvalidInput, setUnvalidInput] = useState(false);
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [unvalidInput]);
 
   const addNewTodo = async () => {
     if (inputText.length === 0) {
@@ -43,6 +47,7 @@ export default function TodosHeader({ onItemAdd }) {
       <h1 className={styles.title}>My Todo App</h1>
       <div className={styles.addTask}>
         <input
+          ref={inputRef}
           value={inputText} //defaultValue is not working
           placeholder={placeHolderText}
           className={`${styles.inputHeader} ${
