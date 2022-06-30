@@ -31,8 +31,8 @@ This will make your project:
 
 ### The requirements:
 
-- [ ] Remove `app.use(express.static(path.join(__dirname, 'dist')))` from your `server.js` file
-- [ ] Delete `src/server/dist` **ONLY** when your new client is up and running
+- [x] Remove `app.use(express.static(path.join(__dirname, 'dist')))` from your `server.js` file
+- [x] Delete `src/server/dist` **ONLY** when your new client is up and running
 - [x] Initialize your React project in the `src` folder using [create-react-app](https://create-react-app.dev/docs/getting-started/) with the name `client`
 - [x] Decompose your Todo App into components (controlled and uncontrolled)
 - [x] Re-Implement the Todo App using hooks
