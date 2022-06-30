@@ -1,7 +1,7 @@
 const axios = require("axios");
 const url = "https://pokeapi.co/api/v2/pokemon";
 let requestsArray = [];
-const TWO_MINS = 2;
+const NUMBER_OF_MINUTES = 2;
 
 async function fetchPokemon(pokemonId) {
   const date = new Date();
@@ -11,14 +11,14 @@ async function fetchPokemon(pokemonId) {
     if (
       item.id === pokemonId &&
       item.hour === curretHour &&
-      curretMinute - item.minute < TWO_MINS
+      curretMinute - item.minute < NUMBER_OF_MINUTES
     ) {
       return true;
     }
   });
   if (isThisRequestExist) {
     return {
-      name: `Request overload with id: ${pokemonId}:please wait 2 minutes before trying again`,
+      name: `Request overload with id: ${pokemonId}:please wait ${NUMBER_OF_MINUTES} minutes before trying again`,
     };
   }
   try {
