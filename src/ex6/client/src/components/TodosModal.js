@@ -21,9 +21,15 @@ export default function RegistarModal(props) {
   let displayTodos = "loading";
   if (todos) {
     displayTodos = todos.map((item) => {
-      if (item.itemName !== "") {
-        return <TodoItem key={item.id} todo={item} onItemChange={fetchTodos} />;
-      }
+      return (
+        <TodoItem
+          key={item.id}
+          todoId={item.id}
+          todoName={item.itemName}
+          todoStatus={item.status}
+          onItemChange={fetchTodos}
+        />
+      );
     });
   }
 

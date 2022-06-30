@@ -1,26 +1,33 @@
 import React, { useState } from "react";
 import { removeTodo, changeTodoStatus } from "../todos-client";
 import styles from "../style/TodosItem.module.css";
+// eslint-disable-next-line
 import { MdOutlineModeEdit } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
 import { MAX_TEXT_LENGTH } from "../constants";
+import PropTypes from "prop-types";
 
-export default function TodoItem({ todo, onItemChange }) {
+function TodoItem({
+  todoName = "no name was found",
+  todoStatus,
+  todoId,
+  onItemChange,
+}) {
   const deleteTodo = async () => {
-    await removeTodo(todo.id);
+    await removeTodo(todoId);
     onItemChange();
   };
 
-  const [status, setStatus] = useState(todo.status);
+  const [status, setStatus] = useState(todoStatus);
 
   const changeStatus = async () => {
-    await changeTodoStatus(todo.id, !status);
+    await changeTodoStatus(todoId, !status);
     onItemChange();
   };
   let itemName =
-    todo.itemName.length > MAX_TEXT_LENGTH
-      ? todo.itemName.substring(0, MAX_TEXT_LENGTH)
-      : todo.itemName;
+    todoName.length > MAX_TEXT_LENGTH
+      ? todoName.substring(0, MAX_TEXT_LENGTH)
+      : todoName;
 
   return (
     <div className={styles.todoRow}>
@@ -45,3 +52,12 @@ export default function TodoItem({ todo, onItemChange }) {
     </div>
   );
 }
+
+TodoItem.propTypes = {
+  todoName: PropTypes.string,
+  todoId: PropTypes.number,
+  todoStatus: PropTypes.bool,
+  onItemChange: PropTypes.func,
+};
+
+export default TodoItem;

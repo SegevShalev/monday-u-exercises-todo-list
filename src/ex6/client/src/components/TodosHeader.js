@@ -42,19 +42,17 @@ export default function TodosHeader({ onItemAdd }) {
     <div>
       <h1 className={styles.title}>My Todo App</h1>
       <div className={styles.addTask}>
-        <label className="input-field">
-          <input
-            value={inputText} //defaultValue is not working
-            placeholder={placeHolderText}
-            className={`${styles.inputHeader} ${
-              unvalidInput ? styles.redPlaceholder : ""
-            } `}
-            type="text"
-            required
-            onChange={(e) => setInputText(e.target.value)}
-            onKeyDown={(e) => enterPressed(e)}
-          />
-        </label>
+        <input
+          value={inputText} //defaultValue is not working
+          placeholder={placeHolderText}
+          className={`${styles.inputHeader} ${
+            unvalidInput ? styles.redPlaceholder : ""
+          } `}
+          type="text"
+          required
+          onChange={(e) => setInputText(e.target.value)}
+          onKeyDown={(e) => enterPressed(e)}
+        />
         <button className={styles.addBtn} type="button" onClick={addNewTodo}>
           <MdOutlineAddCircle />
         </button>
