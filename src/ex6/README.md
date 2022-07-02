@@ -52,4 +52,4 @@ This will make your project:
   - [x] Add Tabs / Navigation bar to help route between pages [Tabs example](https://style.monday.com/?path=/docs/navigation-tabs-tab--overview)
   - Page suggestions
     - [ ] Task completion statistics page - # of open tasks, total number of tasks, average tim to finish a task, etc.
-    - [ ] About page - with some fun facts and profile picture
+    - [x] About page - with some fun facts and profile picture

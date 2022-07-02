@@ -1,0 +1,52 @@
+.container {
+  background-color: white;
+  height: 720px;
+  text-align: center;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  height: 50%;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+  background-color: rgb(101, 132, 217);
+}
+.div2 {
+  background-color: rgb(58, 188, 167);
+  grid-area: 1 / 2 / 2 / 3;
+  background-image: url("./../assets/todo_image.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.mid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  height: 50%;
+}
+
+.div3 {
+  grid-area: 1 / 1 / 2 / 2;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  background-color: rgb(225, 180, 122);
+  padding-right: 40%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.div4 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.div5 {
+  grid-area: 1 / 3 / 2 / 4;
+  background-color: black;
+}

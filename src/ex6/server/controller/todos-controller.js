@@ -42,7 +42,6 @@ async function updateStatus(req, res) {
 }
 
 async function updateTodo(req, res) {
-  console.log("from controller", req.params.id, req.body.text);
   const todo = await TodoService.updateTodo(req.params.id, req.body.text);
   return res.status(200).json("200");
 }
