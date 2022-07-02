@@ -47,9 +47,9 @@ This will make your project:
 ### Bonus
 
 - [x] Add error handling for communication issues with your backend (Empty state / Loader / Something else)
-- [ ] Use components from the [Vibe Design System](https://github.com/mondaycom/monday-ui-react-core) (monday.com's component library)
-- [ ] Use [React Router](https://reactrouter.com/docs/en/v6) to add basic routing capabilities to your app
-  - [ ] Add Tabs / Navigation bar to help route between pages [Tabs example](https://style.monday.com/?path=/docs/navigation-tabs-tab--overview)
+- [x] Use components from the [Vibe Design System](https://github.com/mondaycom/monday-ui-react-core) (monday.com's component library)
+- [x] Use [React Router](https://reactrouter.com/docs/en/v6) to add basic routing capabilities to your app
+  - [x] Add Tabs / Navigation bar to help route between pages [Tabs example](https://style.monday.com/?path=/docs/navigation-tabs-tab--overview)
   - Page suggestions
     - [ ] Task completion statistics page - # of open tasks, total number of tasks, average tim to finish a task, etc.
     - [ ] About page - with some fun facts and profile picture

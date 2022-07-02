@@ -1,24 +1,25 @@
 import React, { useState } from "react";
-import { removeTodo, changeTodoStatus } from "../todos-client";
-import styles from "../style/TodosItem.module.css";
-// eslint-disable-next-line
+import PropTypes from "prop-types";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
-import { MAX_TEXT_LENGTH } from "../constants";
-import PropTypes from "prop-types";
+// eslint-disable-next-line
+import MondayModal from "./MondayModal";
 
+import { removeTodo, changeTodoStatus } from "../todos-client";
+import { MAX_TEXT_LENGTH } from "../constants";
+import styles from "../style/TodosItem.module.css";
 function TodoItem({
   todoName = "no name was found",
   todoStatus,
   todoId,
   onItemChange,
 }) {
+  const [status, setStatus] = useState(todoStatus);
+
   const deleteTodo = async () => {
     await removeTodo(todoId);
     onItemChange();
   };
-
-  const [status, setStatus] = useState(todoStatus);
 
   const changeStatus = async () => {
     await changeTodoStatus(todoId, !status);
@@ -42,9 +43,6 @@ function TodoItem({
           checked={status}
           onChange={() => setStatus(!status)}
         />
-        {/*  <button>
-          <MdOutlineModeEdit />
-        </button> */}
         <button onClick={deleteTodo}>
           <TiDeleteOutline />
         </button>

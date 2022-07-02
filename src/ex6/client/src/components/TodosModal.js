@@ -39,7 +39,7 @@ export default function RegistarModal(props) {
         style={{
           overlay: {
             position: "fixed",
-            top: 0,
+            top: 30,
             left: 0,
             right: 0,
             bottom: 0,
