@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
 // eslint-disable-next-line
-import MondayModal from "./MondayModal";
 
 import { removeTodo, changeTodoStatus } from "../todos-client";
 import { MAX_TEXT_LENGTH } from "../constants";
@@ -32,17 +31,17 @@ function TodoItem({
 
   return (
     <div className={styles.todoRow}>
+      <input
+        onClick={changeStatus}
+        type="checkbox"
+        className={styles.checkbox}
+        checked={status}
+        onChange={() => setStatus(!status)}
+      />
       <div className={styles.itemName}>
         <label>{itemName}</label>
       </div>
       <div>
-        <input
-          onClick={changeStatus}
-          type="checkbox"
-          className={styles.checkbox}
-          checked={status}
-          onChange={() => setStatus(!status)}
-        />
         <button onClick={deleteTodo}>
           <TiDeleteOutline />
         </button>

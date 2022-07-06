@@ -1,45 +1,37 @@
-.title {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  letter-spacing: 10px;
-  font-size: 2.5em;
-  margin-bottom: 0;
-  text-align: center;
-}
-
 .addTask {
   display: flex;
-  align-items: center;
-  margin: 20px;
+  justify-content: space-evenly;
   margin-bottom: 50px;
+  position: relative;
+  left: 40px;
+  width: 511px;
+  margin-top: 20px;
 }
 .addTask button {
   font-size: 20px;
-  background-color: white;
+  background-color: transparent;
   margin-left: 10px;
   padding: 15px;
   border: none;
-  border-radius: 20px;
   transition: all 0.5s ease;
 }
 
 .addTask .addBtn:hover {
-  background-color: gold;
-  color: white;
+  color: gold;
 }
 
 .addTask .deleteAllBtn:hover {
-  background-color: black;
   color: red;
   font-size: 20px;
 }
 
 .inputHeader {
-  padding: 10px;
   border-radius: 5px;
-  width: 300px;
+  width: 100%;
   font-size: 15px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 4px 8px;
 }
 
 .redPlaceholder::placeholder {
@@ -47,5 +39,3 @@
   font-size: 18px;
   color: red;
 }
-
-/* modal add task => addTask */

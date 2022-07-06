@@ -1,11 +1,13 @@
 .todoRow {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
 }
 button {
   font-size: 20px;
-  background-color: white;
+  background-color: transparent;
   border: none;
   border-radius: 20px;
   transition: all 0.5s ease;
@@ -29,6 +31,9 @@ button:hover {
   color: black;
   outline: none;
   transition: all 0.4s ease;
+  background-color: white;
+  border-radius: 4px;
+  padding-left: 10px;
 }
 
 .itemName:hover {

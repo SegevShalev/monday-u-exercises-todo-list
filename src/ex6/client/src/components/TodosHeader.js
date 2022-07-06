@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
+import { MdOutlineAddCircle, MdDeleteSweep } from "react-icons/md";
+
 import styles from "../style/TodosHeader.module.css";
 import { addTodo, removeAllTodos } from "../todos-client";
-import { MdOutlineAddCircle, MdDeleteSweep } from "react-icons/md";
 import {
   DEFAULT_PLACEHOLDER_TEXT,
   UNVALID_PLACEHOLDER_TEXT,
 } from "../constants";
+
 export default function TodosHeader({ onItemAdd }) {
   const [inputText, setInputText] = useState("");
   const [unvalidInput, setUnvalidInput] = useState(false);
@@ -43,7 +45,6 @@ export default function TodosHeader({ onItemAdd }) {
 
   return (
     <div>
-      <h1 className={styles.title}>My Todo App</h1>
       <div className={styles.addTask}>
         <input
           ref={inputRef}
