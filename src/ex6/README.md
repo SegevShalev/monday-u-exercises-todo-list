@@ -42,10 +42,10 @@ This will make your project:
 
 ### The requirements:
 
-- [ ] Use redux actions for communicating with the server (fetching items, adding a new item, etc.)
-- [ ] Move the items from local component's state into the store
-- [ ] Handle failure of requests from the server
-- [ ] Handle loading
+- [inProgress] Use redux actions for communicating with the server (fetching items, adding a new item, etc.)
+- [x] Move the items from local component's state into the store
+- [inProgress] Handle failure of requests from the server
+- [x] Handle loading
 - [ ] Add search
 - [ ] Add the ability to hide items that were marked as done or to show only them
 

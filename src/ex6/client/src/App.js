@@ -1,10 +1,9 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
 import TodosList from "./components/TodosList";
 import About from "./components/About";
-
-function App() {
+import "./App.css";
+function App(props) {
   return (
     <div style={{ height: "100%" }}>
       <Routes>

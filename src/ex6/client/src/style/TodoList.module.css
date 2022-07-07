@@ -2,7 +2,7 @@
   background: black;
 }
 
-.container {
+.todosBox {
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -19,4 +19,9 @@
   letter-spacing: 10px;
   font-size: 2.5em;
   text-align: center;
+}
+
+.container {
+  background-image: radial-gradient(#f3904f, #3b4371);
+  height: 100%;
 }

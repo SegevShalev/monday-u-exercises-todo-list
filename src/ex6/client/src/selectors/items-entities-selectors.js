@@ -1,1 +1,1 @@
-const getItemsEntities = state => state.itemsEntities;
+const getItemsEntities = (state) => state.itemsEntities;

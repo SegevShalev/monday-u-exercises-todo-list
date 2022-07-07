@@ -1,55 +1,63 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { connect } from "react-redux";
+import { Loader } from "monday-ui-react-core";
+import "monday-ui-react-core/dist/main.css";
 
-import { getTodos } from "../todos-client";
 import TodoItem from "./TodoItem";
 import TodosHeader from "./TodosHeader";
 import Menu from "./Menu";
 import styles from "../style/TodoList.module.css";
+import fetchAllTodosAction from "../actions/fetch-all-todos-action";
 
-export default function TodoList(props) {
-  const [todos, setTodos] = useState();
+function TodoList(props) {
+  const { fetchAllTodosAction } = props;
 
-  const fetchTodos = useCallback(async () => {
-    const todos = await getTodos();
-    setTodos(todos);
-  }, []);
+  /*  const fetchTodos = useCallback(async () => {
+    fetchAllTodosAction();
+  }, [fetchAllTodosAction]); */ //props.todos.itemsEntities.state break the app
 
   useEffect(() => {
-    fetchTodos();
-  }, [fetchTodos]);
+    fetchAllTodosAction();
+  }, [fetchAllTodosAction]);
 
-  let displayTodos = "loading";
-  if (todos) {
-    displayTodos = todos.map((item) => {
+  const todosMap = props.todos ? (
+    props.todos.map((item) => {
       return (
         <TodoItem
           key={item.id}
           todoId={item.id}
           todoName={item.itemName}
           todoStatus={item.status}
-          onItemChange={fetchTodos}
         />
       );
-    });
-  }
+    })
+  ) : (
+    <Loader size={40} />
+  );
 
   return (
-    <div
-      style={{
-        backgroundImage: "radial-gradient(#f3904f, #3b4371)",
-        height: "100%",
-      }}
-    >
-      <div>
-        <Menu />
-      </div>
+    <div className={styles.container}>
+      <Menu />
       <h1 className={styles.title}>My Todo App</h1>
       <div>
-        <div className={styles.container}>
-          <TodosHeader onItemAdd={fetchTodos} />
-          {displayTodos}
+        <div className={styles.todosBox}>
+          <TodosHeader />
+          {todosMap}
         </div>
       </div>
     </div>
   );
 }
+
+function mapStateToProps({ itemsEntities }) {
+  return {
+    loading: itemsEntities.loading,
+    todos: itemsEntities.todos,
+  };
+}
+
+const mapDispatchToProps = {
+  fetchAllTodosAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
