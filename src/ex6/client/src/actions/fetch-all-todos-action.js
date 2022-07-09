@@ -1,12 +1,6 @@
 import ACTIONS from "./constants/index";
 import { getTodos } from "../todos-client";
 
-function fetchAllTodosRequest() {
-  return {
-    type: ACTIONS.fetchAllTodosRequest,
-  };
-}
-
 function fetchAllTodosSuccess(todos) {
   return {
     type: ACTIONS.fetchAllTodosSuccess,

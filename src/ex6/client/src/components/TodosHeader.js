@@ -3,6 +3,7 @@ import { MdOutlineAddCircle, MdDeleteSweep } from "react-icons/md";
 import { connect } from "react-redux";
 
 import { addTodoAction } from "../actions/add-todo-action";
+import { removeAllTodoAction } from "../actions/remove-all-todos-action";
 import styles from "../style/TodosHeader.module.css";
 import { removeAllTodos } from "../todos-client";
 import {
@@ -10,7 +11,7 @@ import {
   UNVALID_PLACEHOLDER_TEXT,
 } from "../constants";
 
-function TodosHeader({ onItemAdd, addTodoAction }) {
+function TodosHeader({ addTodoAction, removeAllTodoAction }) {
   const [inputText, setInputText] = useState("");
   const [unvalidInput, setUnvalidInput] = useState(false);
   const inputRef = useRef();
@@ -19,7 +20,7 @@ function TodosHeader({ onItemAdd, addTodoAction }) {
     inputRef.current.focus();
   }, [unvalidInput]);
 
-  const addNewTodo = async () => {
+  const addNewTodo = () => {
     if (inputText.length === 0) {
       setUnvalidInput(true);
       return;
@@ -29,14 +30,13 @@ function TodosHeader({ onItemAdd, addTodoAction }) {
     setInputText("");
   };
 
-  const deleteAllTodos = async () => {
-    await removeAllTodos();
-    onItemAdd();
+  const deleteAllTodos = () => {
+    removeAllTodoAction();
   };
 
-  const enterPressed = async (event) => {
+  const enterPressed = (event) => {
     if (event.key === "Enter") {
-      await addNewTodo();
+      addNewTodo();
     }
   };
 
@@ -75,13 +75,12 @@ function TodosHeader({ onItemAdd, addTodoAction }) {
 }
 
 function mapStateToProps(state) {
-  return {
-    state,
-  };
+  return {};
 }
 
 const mapDispatchToProps = {
   addTodoAction,
+  removeAllTodoAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodosHeader);

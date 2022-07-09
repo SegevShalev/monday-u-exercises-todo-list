@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Loader } from "monday-ui-react-core";
 import "monday-ui-react-core/dist/main.css";
@@ -11,10 +11,6 @@ import fetchAllTodosAction from "../actions/fetch-all-todos-action";
 
 function TodoList(props) {
   const { fetchAllTodosAction } = props;
-
-  /*  const fetchTodos = useCallback(async () => {
-    fetchAllTodosAction();
-  }, [fetchAllTodosAction]); */ //props.todos.itemsEntities.state break the app
 
   useEffect(() => {
     fetchAllTodosAction();
