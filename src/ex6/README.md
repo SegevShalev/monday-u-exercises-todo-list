@@ -46,8 +46,8 @@ This will make your project:
 - [x] Move the items from local component's state into the store
 - [x] Handle failure of requests from the server
 - [x] Handle loading
-- [ ] Add search
-- [ ] Add the ability to hide items that were marked as done or to show only them
+- [x] Add search
+- [x] Add the ability to hide items that were marked as done or to show only them
 
 #### Your todo app is now:
 

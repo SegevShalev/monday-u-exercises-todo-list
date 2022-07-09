@@ -5,6 +5,8 @@ const ACTIONS = {
   removeTodo: "REMOVE_TODO",
   removeAllTodos: "REMOVE_ALL_TODOS",
   changeTodoStatus: "CHANGE_TODO_STATUS",
+  filterUndoneTodos: "FILTER_UNDONE_TODOS",
+  filterSearchTodos: "FILTER_SEARCH_TODOS",
 };
 
 export default ACTIONS;

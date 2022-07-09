@@ -16,8 +16,14 @@ function TodoList(props) {
     fetchAllTodosAction();
   }, [fetchAllTodosAction]);
 
-  const todosMap = props.todos ? (
-    props.todos.map((item) => {
+  const todosMap = props.filteredTodos
+    ? [...props.filteredTodos]
+    : [...props.todos];
+
+  const displayTodos = props.loading ? (
+    <Loader size={40} />
+  ) : (
+    todosMap.map((item) => {
       return (
         <TodoItem
           key={item.id}
@@ -27,10 +33,7 @@ function TodoList(props) {
         />
       );
     })
-  ) : (
-    <Loader size={40} />
   );
-
   return (
     <div className={styles.container}>
       <Menu />
@@ -38,17 +41,18 @@ function TodoList(props) {
       <div>
         <div className={styles.todosBox}>
           <TodosHeader />
-          {todosMap}
+          {displayTodos}
         </div>
       </div>
     </div>
   );
 }
 
-function mapStateToProps({ itemsEntities }) {
+function mapStateToProps({ itemsEntities, itemsView }) {
   return {
-    loading: itemsEntities.loading,
     todos: itemsEntities.todos,
+    filteredTodos: itemsView.filteredTodos,
+    loading: itemsEntities.loading,
   };
 }
 

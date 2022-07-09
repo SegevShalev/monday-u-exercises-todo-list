@@ -39,13 +39,12 @@ function TodoItem({
         className={styles.checkbox}
         checked={todoStatus}
         onChange={() => {}}
-        // onChange={() => setStatus(!status)}
       />
       <div className={styles.itemName}>
         <label>{itemName}</label>
       </div>
       <div>
-        <button onClick={deleteTodo}>
+        <button className={styles.deleteTodo} onClick={deleteTodo}>
           <TiDeleteOutline />
         </button>
       </div>
