@@ -7,6 +7,7 @@ const ACTIONS = {
   changeTodoStatus: "CHANGE_TODO_STATUS",
   filterUndoneTodos: "FILTER_UNDONE_TODOS",
   filterSearchTodos: "FILTER_SEARCH_TODOS",
+  undeleteTodos: "UNDELETE_TODOS",
 };
 
 export default ACTIONS;

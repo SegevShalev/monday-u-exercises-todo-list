@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 
 import { addTodoAction } from "../actions/add-todo-action";
 import { removeAllTodoAction } from "../actions/remove-all-todos-action";
+import { unDeleteTodoAction } from "../actions/undelete-todo-action";
 import { filterTodosAction } from "../actions/filter-todos-action";
-import { Hide, Show } from "monday-ui-react-core/dist/allIcons";
+import { Hide, Show, Mirror } from "monday-ui-react-core/dist/allIcons";
 
 import styles from "../style/TodosHeader.module.css";
 import {
@@ -17,6 +18,7 @@ function TodosHeader({
   addTodoAction,
   removeAllTodoAction,
   filterTodosAction,
+  unDeleteTodoAction,
   todos,
 }) {
   const [inputText, setInputText] = useState("");
@@ -91,6 +93,9 @@ function TodosHeader({
         >
           <MdDeleteSweep />
         </button>
+        <button onClick={unDeleteTodoAction}>
+          <Mirror />
+        </button>
       </div>
     </div>
   );
@@ -104,6 +109,7 @@ const mapDispatchToProps = {
   addTodoAction,
   removeAllTodoAction,
   filterTodosAction,
+  unDeleteTodoAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodosHeader);

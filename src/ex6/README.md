@@ -58,6 +58,6 @@ This will make your project:
 ### Bonus
 
 - [ ] \* Debounce search
-- [ ] \* Implement an option to restore the last item that was deleted
+- [x] \* Implement an option to restore the last item that was deleted /cancel last action
 - [ ] \*\* Make your application accessible, i.e. keyboard navigation (ctrl+Enter create new, tab navigation)
 - [ ] Add redux logger middleware to your application

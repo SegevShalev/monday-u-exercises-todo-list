@@ -1,6 +1,6 @@
 import ACTIONS from "../actions/constants/index";
 
-const initialState = { todos: [], loading: true };
+const initialState = { todos: [], loading: true, oldTodos: [] };
 
 const itemsEntitiesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -19,7 +19,7 @@ const itemsEntitiesReducer = (state = initialState, action) => {
           return todo;
         }
       });
-      return { ...state, todos: filteredTodos };
+      return { ...state, todos: filteredTodos, oldTodos: [...state.todos] };
     case "REMOVE_ALL_TODOS":
       return { ...state, todos: [] };
     case "CHANGE_TODO_STATUS":
@@ -30,6 +30,9 @@ const itemsEntitiesReducer = (state = initialState, action) => {
         return todo;
       });
       return { ...state, todos: updatedState };
+    case "UNDELETE_TODOS":
+      console.log(state.oldTodos);
+      return { ...state, todos: [...state.oldTodos] };
     default:
       return state;
   }

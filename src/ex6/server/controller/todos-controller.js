@@ -20,7 +20,7 @@ async function addTodo(req, res) {
   const pokemon = await fetchPokemon(req.body.name);
   const newTodo = await TodoService.addTodo({
     id: pokemon.name + length,
-    name: pokemon.name,
+    name: `catch ${pokemon.name}`,
     pokemonId: req.body.name,
   });
   return res.status(201).json({ newTodo });
@@ -41,12 +41,10 @@ async function updateStatus(req, res) {
     req.params.id,
     req.body.status
   );
-  return res
-    .status(200)
-    .json({
-      updatedTodoId: parseInt(req.params.id),
-      newStatus: req.body.status,
-    });
+  return res.status(200).json({
+    updatedTodoId: parseInt(req.params.id),
+    newStatus: req.body.status,
+  });
 }
 
 async function updateTodo(req, res) {
