@@ -36,7 +36,6 @@ function TodoList(props) {
   );
   return (
     <div className={styles.container}>
-      <Menu />
       <h1 className={styles.title}>My Todo App</h1>
       <div>
         <div className={styles.todosBox}>
