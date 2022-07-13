@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render the About Component 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="top"
+  >
+    <div
+      className="div1"
+    />
+    <div
+      className="div2"
+    />
+  </div>
+  <div
+    className="mid"
+  >
+    <div
+      className="div3"
+    >
+      <p>
+        ABOUT TODO
+      </p>
+    </div>
+    <div
+      className="div4"
+    >
+      <p>
+        Welcome to my Todo App! a place when you can add your todos and catch Pokemon!
+      </p>
+    </div>
+    <div
+      className="div5"
+    >
+      <img
+        alt="pokemon id: undefined"
+        height={250}
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/undefined.png"
+        width={250}
+      />
+    </div>
+  </div>
+</div>
+`;
