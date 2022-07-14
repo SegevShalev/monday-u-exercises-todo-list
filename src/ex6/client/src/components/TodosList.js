@@ -37,7 +37,7 @@ function TodoList(props) {
       <div>
         <div className={styles.todosBox}>
           <TodosHeader />
-          {displayTodos}
+          <div className={"todoscontainer"}>{displayTodos}</div>
         </div>
       </div>
     </div>

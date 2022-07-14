@@ -105,7 +105,7 @@ This will make your project:
 
 - [ ] Coverage - get to 50% coverage for `items-entities-reducer.js` file
 - [x] Add snapshot tests with more props variations
-- [ ] Add an E2E test to the project using cypress
+- [x] Add an E2E test to the project using cypress
 
 **Setup cypress:**
 

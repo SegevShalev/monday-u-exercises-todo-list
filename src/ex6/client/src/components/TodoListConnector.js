@@ -4,8 +4,8 @@ import TodoList from "./TodosList";
 
 function mapStateToProps({ itemsEntities, itemsView }) {
   return {
-    todos: itemsEntities.todos,
-    filteredTodos: itemsView.filteredTodos,
+    todos: itemsEntities.todos || [],
+    filteredTodos: itemsView.filteredTodos || null,
     loading: itemsEntities.loading,
   };
 }
