@@ -50,7 +50,7 @@ This will make your project:
   client/src/components/about-component/__tests__/AboutComponent.test.jsx
   ```
 
-- [ ] Integration tests - send 2 items to the
+- [x] Integration tests - send 2 items to the
 
       ListContainer
 
@@ -99,12 +99,12 @@ This will make your project:
 
   we also send the fetchItems function this component as a mocked function that gets us the same items (becuase we dont have a real server or action that does it)
 
-- [ ] Create a new test that mocks `fetchItems` and make sure it has been called (do it under the same test file as the ListContainer tests)
+- [x] Create a new test that mocks `fetchItems` and make sure it has been called (do it under the same test file as the ListContainer tests)
 
 ### Bonus
 
 - [ ] Coverage - get to 50% coverage for `items-entities-reducer.js` file
-- [ ] Add snapshot tests with more props variations
+- [x] Add snapshot tests with more props variations
 - [ ] Add an E2E test to the project using cypress
 
 **Setup cypress:**

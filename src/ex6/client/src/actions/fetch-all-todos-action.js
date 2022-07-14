@@ -13,7 +13,7 @@ function fetchAllTodosFailure() {
   };
 }
 
-export default function fetchAllTodosAction() {
+export function fetchAllTodosAction() {
   return async (dispatch, state) => {
     try {
       const todos = await getTodos();

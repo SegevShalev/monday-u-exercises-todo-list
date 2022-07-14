@@ -15,3 +15,15 @@ test("render the ListItem", () => {
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+//bonus #2
+test("render the ListItem with props variation", () => {
+  const tree = renderer
+    .create(
+      <Provider store={store}>
+        <TodoItem todoName={"another test"} todoStatus={false} todoId={135} />
+      </Provider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
