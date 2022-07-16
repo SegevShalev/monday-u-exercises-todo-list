@@ -1,6 +1,5 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-
 import { Tab } from "monday-ui-react-core";
 import "monday-ui-react-core/dist/main.css";
 

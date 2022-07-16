@@ -2,19 +2,23 @@ const url = `http://localhost:8080/api`;
 const HEADER = { "Content-Type": "application/json" };
 
 export async function getTodos() {
-  let res = await fetch(url, {
-    method: "GET",
-    headers: HEADER,
-  });
+  try {
+    let res = await fetch(url, {
+      method: "GET",
+      headers: HEADER,
+    });
 
-  if (!res.ok) {
-    return { name: "Failed to get Todos" };
+    if (!res.ok) {
+      return { name: "Failed to get Todos" };
+    }
+    return await res.json();
+  } catch {
+    return null;
   }
-  return await res.json();
 }
 
 export async function addTodo(text) {
-  await fetch(url, {
+  return await fetch(url, {
     method: "POST",
     body: JSON.stringify({ name: text }),
     headers: HEADER,
@@ -22,21 +26,21 @@ export async function addTodo(text) {
 }
 
 export async function removeTodo(id) {
-  await fetch(`${url}/${id}`, {
+  return await fetch(`${url}/${id}`, {
     method: "DELETE",
     headers: HEADER,
   });
 }
 
 export async function removeAllTodos() {
-  await fetch(`${url}`, {
+  return await fetch(`${url}`, {
     method: "DELETE",
     headers: HEADER,
   });
 }
 
 export async function changeTodoStatus(id, status) {
-  await fetch(`${url}/${id}/status`, {
+  return await fetch(`${url}/${id}/status`, {
     method: "PATCH",
     body: JSON.stringify({ status: status }),
     headers: HEADER,

@@ -38,7 +38,7 @@ async function updateStatus(id, status) {
   if (!status) {
     date = null;
   }
-  await Todo.update(
+  return await Todo.update(
     { status: status, done: date },
     {
       where: {

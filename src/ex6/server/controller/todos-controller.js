@@ -20,7 +20,7 @@ async function addTodo(req, res) {
   const pokemon = await fetchPokemon(req.body.name);
   const newTodo = await TodoService.addTodo({
     id: pokemon.name + length,
-    name: pokemon.name,
+    name: `catch ${pokemon.name}`,
     pokemonId: req.body.name,
   });
   return res.status(201).json({ newTodo });
@@ -28,7 +28,7 @@ async function addTodo(req, res) {
 
 async function deleteTodo(req, res) {
   const deletedTodo = await TodoService.deleteTodo(req.params.id);
-  return res.status(200).json("deleted: " + deletedTodo);
+  return res.status(200).json({ deletedTodo: parseInt(req.params.id) });
 }
 
 async function deleteAllTodos(req, res) {
@@ -37,8 +37,14 @@ async function deleteAllTodos(req, res) {
 }
 
 async function updateStatus(req, res) {
-  const todo = await TodoService.updateStatus(req.params.id, req.body.status);
-  return res.status(200).json("200");
+  const updatedStatusTodo = await TodoService.updateStatus(
+    req.params.id,
+    req.body.status
+  );
+  return res.status(200).json({
+    updatedTodoId: parseInt(req.params.id),
+    newStatus: req.body.status,
+  });
 }
 
 async function updateTodo(req, res) {

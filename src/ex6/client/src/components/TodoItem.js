@@ -1,49 +1,50 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { removeTodoAction } from "../actions/remove-todo-action";
+import { changeTodoStatusAction } from "../actions/change-todo-status-action";
+// eslint-disable-next-line
 import { MdOutlineModeEdit } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
-// eslint-disable-next-line
-import MondayModal from "./MondayModal";
 
-import { removeTodo, changeTodoStatus } from "../todos-client";
+import { changeTodoStatus } from "../todos-client";
 import { MAX_TEXT_LENGTH } from "../constants";
 import styles from "../style/TodosItem.module.css";
 function TodoItem({
   todoName = "no name was found",
   todoStatus,
   todoId,
-  onItemChange,
+  removeTodoAction,
+  changeTodoStatusAction,
 }) {
-  const [status, setStatus] = useState(todoStatus);
-
   const deleteTodo = async () => {
-    await removeTodo(todoId);
-    onItemChange();
+    // await removeTodo(todoId);
+    removeTodoAction(todoId);
+  };
+  const changeStatus = async () => {
+    // await changeTodoStatus(todoId, !status);
+    changeTodoStatusAction(todoId, !todoStatus);
   };
 
-  const changeStatus = async () => {
-    await changeTodoStatus(todoId, !status);
-    onItemChange();
-  };
   let itemName =
     todoName.length > MAX_TEXT_LENGTH
       ? todoName.substring(0, MAX_TEXT_LENGTH)
       : todoName;
-
   return (
     <div className={styles.todoRow}>
+      <input
+        onClick={changeStatus}
+        type="checkbox"
+        className={styles.checkbox}
+        checked={todoStatus}
+        onChange={() => {}}
+      />
       <div className={styles.itemName}>
         <label>{itemName}</label>
       </div>
       <div>
-        <input
-          onClick={changeStatus}
-          type="checkbox"
-          className={styles.checkbox}
-          checked={status}
-          onChange={() => setStatus(!status)}
-        />
-        <button onClick={deleteTodo}>
+        <button className={styles.deleteTodo} onClick={deleteTodo}>
           <TiDeleteOutline />
         </button>
       </div>
@@ -58,4 +59,13 @@ TodoItem.propTypes = {
   onItemChange: PropTypes.func,
 };
 
-export default TodoItem;
+function mapStateToProps(state) {
+  return {};
+}
+
+const mapDispatchToProps = {
+  removeTodoAction,
+  changeTodoStatusAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);
