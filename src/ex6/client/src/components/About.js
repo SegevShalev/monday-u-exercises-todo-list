@@ -17,9 +17,7 @@ export default function About() {
   }, []);
 
   setInterval(changePokemon, 2000);
-  var min = 1;
-  var max = 900;
-  var rand = parseInt(min + Math.random() * (max - min));
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -39,7 +37,7 @@ export default function About() {
         <div className={styles.div5}>
           <img
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`}
-            alt={`pokemon id: ${rand}`}
+            alt={`pokemon id: ${pokemonId}`}
             height={250}
             width={250}
           ></img>

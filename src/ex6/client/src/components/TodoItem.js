@@ -8,7 +8,6 @@ import { changeTodoStatusAction } from "../actions/change-todo-status-action";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
 
-import { changeTodoStatus } from "../todos-client";
 import { MAX_TEXT_LENGTH } from "../constants";
 import styles from "../style/TodosItem.module.css";
 function TodoItem({
@@ -19,11 +18,9 @@ function TodoItem({
   changeTodoStatusAction,
 }) {
   const deleteTodo = async () => {
-    // await removeTodo(todoId);
     removeTodoAction(todoId);
   };
   const changeStatus = async () => {
-    // await changeTodoStatus(todoId, !status);
     changeTodoStatusAction(todoId, !todoStatus);
   };
 
